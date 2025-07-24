@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Used Car for Sale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+        .image-section {
+            margin-top: 20px;
+        }
+        .contact-info {
+            margin-top: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 600px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sell Your Used Car</h1>
+    <form>
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make">
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model">
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year">
+
+        <label for="price">Price (CAD):</label>
+        <input type="number" id="price" name="price">
+
+        <label for="mileage">Mileage (km):</label>
+        <input type="number" id="mileage" name="mileage">
+
+        <label for="condition">Condition:</label>
+        <textarea id="condition" name="condition" rows="3"></textarea>
+
+        <div class="image-section">
+            <label for="car-image">Upload Car Image:</label>
+            <input type="file" id="car-image" name="car-image" accept="image/*">
+        </div>
+
+        <button type="submit">Send Inquiry</button>
+    </form>
+
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>Email: yourname@example.com</p>
+        <p>Phone: +1-234-567-8901</p>
+    </div>
+</body>
+</html>
