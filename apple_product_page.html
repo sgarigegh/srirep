@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store</title>
+    <style>
+        :root {
+            --primary-text-color: #1d1d1f;
+            --secondary-text-color: #6e6e73;
+            --background-color: #f5f5f7;
+            --container-background: #fff;
+            --border-color: #d2d2d7;
+            --divider-color: #e1e1e1;
+            --interactive-color: #0071e3;
+            --interactive-hover-color: #0077ed;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--container-background);
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--interactive-color);
+            cursor: pointer;
+            font-weight: 400;
+            padding: 0.5rem 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .view-cart-btn {
+            background-color: transparent;
+            color: var(--interactive-color);
+            border: 1px solid var(--interactive-color);
+            border-radius: 980px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-cart-btn:hover {
+            background-color: var(--interactive-color);
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-text-color);
+        }
+
+        .apple-logo {
+            width: 40px;
+            height: 48px;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkout-view {
+            width: 100%;
+        }
+
+        .product-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .description-display {
+            margin-top: 1.5rem;
+            max-width: 450px;
+        }
+
+        #phone-description {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        #iphone-model {
+            padding: 0.75rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        .price-display {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-text-color);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: auto;
+            padding-top: 2rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--interactive-color);
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--interactive-hover-color);
+        }
+
+        /* Checkout Styles */
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: 600;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-section input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        #order-summary-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        #order-summary-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            color: var(--secondary-text-color);
+        }
+
+        .checkout-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            border-top: 1px solid var(--divider-color);
+            padding-top: 1rem;
+        }
+
+        .form-group-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .form-group-checkbox input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .form-group-checkbox label {
+            margin-bottom: 0;
+            color: var(--primary-text-color);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        #create-account-fields.disabled {
+            opacity: 0.5;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--container-background);
+            padding: 2rem;
+            border-radius: 18px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--divider-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary-text-color);
+        }
+
+        .close-button {
+            color: var(--secondary-text-color);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        #cart-items-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart-items-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--divider-color);
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .remove-item-btn {
+            background-color: #f5f5f7;
+            color: var(--secondary-text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 22px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .remove-item-btn:hover {
+            background-color: #e1e1e1;
+            color: var(--primary-text-color);
+        }
+
+        .cart-summary {
+            text-align: right;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: var(--interactive-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 0.85rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-title">Apple Inc.</div>
+            <button type="button" class="back-btn hidden" id="back-to-shop-btn">&larr; Back to Shop</button>
+
+            <div class="header-right" id="header-actions">
+                <button type="button" class="view-cart-btn" id="view-cart-btn">Cart (<span id="cart-count">0</span>)</button>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple Logo" class="apple-logo">
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="product-selector">
+                <div class="product-details">
+                    <div class="form-group" id="product-view">
+                        <label for="iphone-model">Choose an iPhone model:</label>
+                        <select id="iphone-model" name="iphone-model">
+                            <option value="iphone11">iPhone 11</option>
+                            <option value="iphone12">iPhone 12</option>
+                            <option value="iphone13">iPhone 13</option>
+                            <option value="iphone14">iPhone 14</option>
+                            <option value="iphone15">iPhone 15</option>
+                            <option value="iphone16">iPhone 16</option>
+                        </select>
+                    </div>
+                    <div class="description-display">
+                        <p id="phone-description"></p>
+                    </div>
+                </div>
+                <div class="price-display">
+                    <span id="phone-price"></span>
+                </div>
+            </div>
+
+            <div class="checkout-view hidden" id="checkout-view">
+                <form id="checkout-form">
+                    <h2>Checkout</h2>
+                    <div id="order-summary">
+                        <h4>Order Summary</h4>
+                        <ul id="order-summary-list"></ul>
+                        <div class="checkout-total">
+                            <strong>Total:</strong> <span id="checkout-total-price">$0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-section" id="account-section" style="margin-top: 2rem;">
+                        <h3>Account Information</h3>
+                        <div id="create-account-fields">
+                            <div class="form-group">
+                                <label for="email">Email (for User ID)</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Create Password</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                        </div>
+                        <div class="form-group-checkbox">
+                            <input type="checkbox" id="guest-checkout-box">
+                            <label for="guest-checkout-box">Continue as Guest</label>
+                        </div>
+                    </div>
+
+                    <div class="checkout-grid">
+                        <div class="form-section">
+                            <h3>Shipping Address</h3>
+                            <div class="form-group">
+                                <label for="full-name">Full Name</label>
+                                <input type="text" id="full-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <h3>Credit Card Info</h3>
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiry">Expiry (MM/YY)</label>
+                                <input type="text" id="expiry" required>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <button type="button" class="add-to-cart-btn" id="add-to-cart">Add to Cart</button>
+            <button type="submit" form="checkout-form" class="add-to-cart-btn hidden" id="place-order-btn">Place Order</button>
+        </footer>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2>Your Cart</h2>
+                <span class="close-button" id="close-modal-btn">&times;</span>
+            </header>
+            <div class="modal-body">
+                <ul id="cart-items-list">
+                    <!-- Cart items will be dynamically inserted here -->
+                </ul>
+                <div class="cart-summary">
+                    <strong>Total:</strong> <span id="cart-total">$0</span>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <button type="button" class="checkout-btn" id="checkout-btn">Continue to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cart = [];
+            const prices = {
+                'iphone11': 500,
+                'iphone12': 600,
+                'iphone13': 700,
+                'iphone14': 750,
+                'iphone15': 799,
+                'iphone16': 899
+            };
+            const descriptions = {
+                'iphone11': 'The iPhone 11 features a 6.1-inch Liquid Retina display, an A13 Bionic chip, dual 12MP wide and ultra-wide rear cameras, and a 12MP front camera.',
+                'iphone12': '6.1″ display, Apple A14 Bionic chipset, 2815 mAh battery, 256 GB storage, 4 GB RAM.',
+                'iphone13': 'A15 Bionic chip, 12MP Dual Camera, Splash, Water, and Dust Resistant 3 Rated IP68.',
+                'iphone14': 'The iPhone 14 boasts a 6.1-inch Super Retina XDR display, an advanced A15 Bionic chip and a dual-camera system featuring a 12MP main camera with sensor-shift optical image stabilization and an ultra-wide lens.',
+                'iphone15': 'A16 Bionic chip, 6‑core CPU with 2 performance and 4 efficiency cores, 12MP Camera.',
+                'iphone16': 'A18 chip, New 6‑core CPU with 2 performance and 4 efficiency cores, 48MP Fusion Camera, 12MP Ultra Wide.'
+            };
+
+            const modelSelector = document.getElementById('iphone-model');
+            const priceDisplay = document.getElementById('phone-price');
+            const descriptionDisplay = document.getElementById('phone-description');
+            const addToCartButton = document.getElementById('add-to-cart');
+            const placeOrderBtn = document.getElementById('place-order-btn');
+            const checkoutForm = document.getElementById('checkout-form');
+
+            // Checkout Account fields
+            const guestCheckoutBox = document.getElementById('guest-checkout-box');
+            const createAccountFields = document.getElementById('create-account-fields');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('new-password');
+
+            // Views
+            const productView = document.querySelector('.product-selector');
+            const checkoutView = document.getElementById('checkout-view');
+
+            // Header elements
+            const headerTitle = document.querySelector('.header-title');
+            const headerActions = document.getElementById('header-actions');
+            const backToShopBtn = document.getElementById('back-to-shop-btn');
+
+            const cartModal = document.getElementById('cart-modal');
+            const viewCartBtn = document.getElementById('view-cart-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const cartItemsList = document.getElementById('cart-items-list');
+            const cartTotalDisplay = document.getElementById('cart-total');
+            const cartCountDisplay = document.getElementById('cart-count');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            function updateProductDetails() {
+                const selectedModel = modelSelector.value;
+                const price = prices[selectedModel];
+                const description = descriptions[selectedModel];
+                // Format the price with the currency
+                priceDisplay.textContent = price ? `$${price}` : 'N/A';
+                descriptionDisplay.textContent = description || '';
+            }
+
+            function updateCartView() {
+                cartCountDisplay.textContent = cart.length;
+                cartItemsList.innerHTML = '';
+
+                let total = 0;
+                if (cart.length === 0) {
+                    cartItemsList.innerHTML = '<li>Your cart is empty.</li>';
+                } else {
+                    cart.forEach((item, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <span>${item.name}</span>
+                            <div class="cart-item-actions">
+                                <span>$${item.price}</span>
+                                <button class="remove-item-btn" data-index="${index}" title="Remove item">&times;</button>
+                            </div>
+                        `;
+                        cartItemsList.appendChild(li);
+                        total += item.price;
+                    });
+                }
+                cartTotalDisplay.textContent = `$${total}`;
+            }
+
+            function updateCheckoutSummary() {
+                const summaryList = document.getElementById('order-summary-list');
+                const summaryTotal = document.getElementById('checkout-total-price');
+                summaryList.innerHTML = '';
+                let total = 0;
+
+                cart.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>${item.name}</span> <span>$${item.price}</span>`;
+                    summaryList.appendChild(li);
+                    total += item.price;
+                });
+                summaryTotal.textContent = `$${total}`;
+            }
+
+            function showProductView() {
+                productView.classList.remove('hidden');
+                checkoutView.classList.add('hidden');
+                addToCartButton.classList.remove('hidden');
+                placeOrderBtn.classList.add('hidden');
+
+                headerTitle.classList.remove('hidden');
+                headerActions.classList.remove('hidden');
+                backToShopBtn.classList.add('hidden');
+            }
+
+            function showCheckoutView() {
+                productView.classList.add('hidden');
+                checkoutView.classList.remove('hidden');
+                addToCartButton.classList.add('hidden');
+                placeOrderBtn.classList.remove('hidden');
+
+                headerTitle.classList.add('hidden');
+                headerActions.classList.add('hidden');
+                backToShopBtn.classList.remove('hidden');
+            }
+
+            function toggleModal() {
+                // Update the view every time the modal is opened
+                if (!cartModal.classList.contains('show')) {
+                    updateCartView();
+                }
+                cartModal.classList.toggle('show');
+            }
+
+            // Set initial details on page load
+            updateProductDetails();
+
+            // Add event listener for changes
+            modelSelector.addEventListener('change', updateProductDetails);
+
+            // Add event listener for the cart button
+            addToCartButton.addEventListener('click', function() {
+                const selectedModel = modelSelector.value;
+                const selectedOption = modelSelector.options[modelSelector.selectedIndex];
+                const price = prices[selectedModel];
+
+                const item = {
+                    name: selectedOption.text,
+                    price: price
+                };
+
+                cart.push(item);
+                updateCartView(); // Update cart count in header immediately
+                alert(`'${item.name}' has been added to your cart.`);
+            });
+
+            // Checkout button in modal
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert('Your cart is empty. Please add items before checking out.');
+                    return;
+                }
+                toggleModal(); // Close the cart modal
+                updateCheckoutSummary();
+                showCheckoutView();
+            });
+
+            // Place Order button
+            checkoutForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission for this demo
+                alert('Thank you! Your order has been placed successfully.');
+                // In a real app, you would submit the form data here.
+                location.reload();
+            });
+
+            // Modal event listeners
+            viewCartBtn.addEventListener('click', toggleModal);
+            closeModalBtn.addEventListener('click', toggleModal);
+            window.addEventListener('click', (event) => {
+                if (event.target == cartModal) {
+                    toggleModal();
+                }
+            });
+
+            // Back to shop button
+            backToShopBtn.addEventListener('click', showProductView);
+
+            // Guest checkout checkbox listener
+            guestCheckoutBox.addEventListener('change', function() {
+                const isGuest = this.checked;
+                // Disable/enable input fields
+                emailInput.disabled = isGuest;
+                passwordInput.disabled = isGuest;
+                // Toggle required attribute for form validation
+                emailInput.required = !isGuest;
+                passwordInput.required = !isGuest;
+                createAccountFields.classList.toggle('disabled', isGuest);
+            });
+
+            // Event listener for removing items from the cart
+            cartItemsList.addEventListener('click', function(event) {
+                // Check if a remove button was clicked
+                if (event.target.classList.contains('remove-item-btn')) {
+                    // Get the index from the data-index attribute
+                    const index = parseInt(event.target.dataset.index, 10);
+                    
+                    cart.splice(index, 1); // Remove the item from the cart array
+                    updateCartView(); // Update the cart view to reflect the removal
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
